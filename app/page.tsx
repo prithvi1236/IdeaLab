@@ -14,7 +14,7 @@ export default function Home() {
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsLoading(false)
-    }, 3000) // Show loading page for 3 seconds
+    }, 2000) // Show loading page for 3 seconds
 
     return () => clearTimeout(timer)
   }, [])
