@@ -4,12 +4,6 @@ import { Inter } from "next/font/google"
 
 const inter = Inter({ subsets: ["latin"] })
 
-export const metadata = {
-  title: "IdeaLab - Ideas into Reality",
-  description: "Turn your innovative ideas into reality with IdeaLab at Govt Model Engineering College",
-  
-}
-
 export default function RootLayout({
   children,
 }: {
@@ -17,11 +11,15 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <head>
+        <title>IdeaLab - Ideas into Reality</title>
+        <meta name="description" content="Turn your innovative ideas into reality with IdeaLab at Govt Model Engineering College" />
+        <link rel="icon" href="https://idealab.mec.ac.in/static/media/idealab.7524a97ccb12597d4ef1.png" />
+      </head>
+      <body>
+        {children}
+      </body>
     </html>
   )
 }
 
-
-
-import './globals.css'
