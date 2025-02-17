@@ -1,15 +1,22 @@
-import { motion } from "framer-motion"
+import { motion, AnimatePresence } from "framer-motion"
+import { useState } from "react"
 import { ArrowRight, Users, Book, Globe } from "lucide-react"
 import Link from "next/link"
 import Image from "next/image"
 
 const LandingPage = () => {
+  const [currentForm, setCurrentForm] = useState("details") // "details" or "queries"
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-purple-100 to-blue-100">
       <header className="bg-white shadow-md sticky top-0 z-10">
         <div className="container mx-auto px-4 py-4">
           <nav className="flex justify-between items-center">
-            <motion.div initial={{ x: -20, opacity: 0 }} animate={{ x: 0, opacity: 1 }} transition={{ duration: 0.5 }}>
+            <motion.div
+              initial={{ x: -20, opacity: 0 }}
+              animate={{ x: 0, opacity: 1 }}
+              transition={{ duration: 0.5 }}
+            >
               <Image
                 src="https://idealab.mec.ac.in/static/media/idealab.7524a97ccb12597d4ef1.png"
                 alt="IdeaLab Logo"
@@ -121,7 +128,123 @@ const LandingPage = () => {
             encourage entrepreneurship in the nearby student community.
           </p>
         </motion.div>
+        {/* Forms Section */}
+        <div className="mb-16">
+          <div className="flex justify-center space-x-4 mb-4">
+            <button
+              onClick={() => setCurrentForm("details")}
+              className={`px-4 py-2 rounded-full font-semibold ${
+                currentForm === "details" ? "bg-purple-600 text-white" : "bg-gray-200 text-gray-600"
+              }`}
+            >
+              Have an idea ?
+            </button>
+            <button
+              onClick={() => setCurrentForm("queries")}
+              className={`px-4 py-2 rounded-full font-semibold ${
+                currentForm === "queries" ? "bg-purple-600 text-white" : "bg-gray-200 text-gray-600"
+              }`}
+            >
+              Need help ?
+            </button>
+          </div>
+          <div className="bg-white p-8 rounded-lg shadow-lg">
+            <AnimatePresence>
+              {currentForm === "details" && (
+                <motion.div
+                  key="details"
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: 20 }}
+                >
+                  <form>
+                    <div className="mb-4">
+                      <label className="block text-gray-600 font-semibold mb-2">Title</label>
+                      <input
+                        type="text"
+                        className="w-full border border-gray-300 rounded-lg px-4 py-2"
+                        placeholder="Enter title"
+                      />
+                    </div>
+                    <div className="mb-4">
+                      <label className="block text-gray-600 font-semibold mb-2">Description</label>
+                      <textarea
+                        className="w-full border border-gray-300 rounded-lg px-4 py-2"
+                        placeholder="Enter description"
+                        rows={4}
+                      ></textarea>
+                    </div>
+                    <div className="mb-4">
+                      <label className="block text-gray-600 font-semibold mb-2">Name</label>
+                      <input
+                        type="text"
+                        className="w-full border border-gray-300 rounded-lg px-4 py-2"
+                        placeholder="Enter your name"
+                      />
+                    </div>
+                    <div className="mb-4">
+                      <label className="block text-gray-600 font-semibold mb-2">Contact Number</label>
+                      <input
+                        type="tel"
+                        className="w-full border border-gray-300 rounded-lg px-4 py-2"
+                        placeholder="Enter your contact number"
+                      />
+                    </div>
+                    <button
+                      type="submit"
+                      className="bg-purple-600 text-white px-4 py-2 rounded-full hover:bg-purple-700 transition duration-300"
+                    >
+                      Submit
+                    </button>
+                  </form>
+                </motion.div>
+              )}
+              {currentForm === "queries" && (
+                <motion.div
+                  key="queries"
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: 20 }}
+                >
+                  <form>
+                    <div className="mb-4">
+                      <label className="block text-gray-600 font-semibold mb-2">Query</label>
+                      <textarea
+                        className="w-full border border-gray-300 rounded-lg px-4 py-2"
+                        placeholder="Enter your query"
+                        rows={4}
+                      ></textarea>
+                    </div>
+                    <div className="mb-4">
+                      <label className="block text-gray-600 font-semibold mb-2">Name</label>
+                      <input
+                        type="text"
+                        className="w-full border border-gray-300 rounded-lg px-4 py-2"
+                        placeholder="Enter your name"
+                      />
+                    </div>
+                    <div className="mb-4">
+                      <label className="block text-gray-600 font-semibold mb-2">Contact Number</label>
+                      <input
+                        type="tel"
+                        className="w-full border border-gray-300 rounded-lg px-4 py-2"
+                        placeholder="Enter your contact number"
+                      />
+                    </div>
+                    <button
+                      type="submit"
+                      className="bg-purple-600 text-white px-4 py-2 rounded-full hover:bg-purple-700 transition duration-300"
+                    >
+                      Submit
+                    </button>
+                  </form>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
+        </div>
 
+        {/* Existing Section */}
         <motion.div
           initial={{ y: 40, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
@@ -149,4 +272,3 @@ const LandingPage = () => {
 }
 
 export default LandingPage
-
